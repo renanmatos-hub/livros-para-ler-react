@@ -70,13 +70,40 @@ server.delete('/livros/:id', async function(req, res){
     res.send();
 })
 
-//GET COM FILTRO
+//GET COM FILTRO PELO ID
 server.get('/livros/:id', async function(req, res){
     const id = req.params.id;
     const sql = 'SELECT * FROM livros WHERE id = $1';
     const retorno = await pool.query(sql, [id]);
     return res.json(retorno.rows);
     
+});
+
+//GET COM FILTROS 
+server.get('/livros/search/:id', async function(req, res){
+    ///livros/search/?autor=abc
+    const nome = req.query.autor
+    const id = req.params.id;
+    const sql = 'SELECT * FROM livros WHERE id = $1';
+    const retorno = await pool.query(sql, [id]);
+    return res.json(retorno.rows);
+    
+});
+
+// MARCANDO COMO LIDO
+server.patch('/livros/:id/lido', async function(req, res){
+    const id = req.params.id;
+    const sql = "UPDATE livros SET lido = true WHERE id = $1";
+    await pool.query(sql, [id])
+    res.send();
+});
+
+// MARCANDO COMO Ñ LIDO
+server.patch('/livros/:id/nlido', async function(req, res){
+    const id = req.params.id;
+    const sql = "UPDATE livros SET lido = false WHERE id = $1";
+    await pool.query(sql, [id])
+    res.send();
 });
 
 server.listen(process.env.PORT || 3000);

@@ -31,10 +31,10 @@ pool.query(sql, function (erro, resultado) {
         throw erro
 
     console.log('Tabela criada com sucesso!');
-});
- */
+}); */
+
 //INSERT
-const sql = `
+/* const sql = `
     INSERT INTO livros (autor, titulo, anopublic, genero, lido)
         VALUES
             ('Julio Verne', 'Volta ao Mundo em 80 Dias', '1800', 'Ficção', true),
@@ -46,6 +46,6 @@ pool.query(sql, function(erro, resultado) {
         throw erro
 
     console.log('Inserido com sucesso');
-});
+}); */
 
 // SELECT no arquivo server.js
