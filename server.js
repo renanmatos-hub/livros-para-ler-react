@@ -1,4 +1,5 @@
 const Pool = require('pg').Pool;
+const cors = require('cors');
 
 // 1- Abrir conexão
 // 2- Executar comando SQL
